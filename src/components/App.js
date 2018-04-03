@@ -1,12 +1,19 @@
 import React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Toolbar,ToolbarGroup,ToolbarSeparator} from 'material-ui/Toolbar';
 import Avatar from 'material-ui/Avatar';
-import TodoList from './Sidebar';
+import SideBar from './Sidebar';
+import TodoList from './todoList';
 import TextField from 'material-ui/TextField';
-import {GridList, GridTile} from 'material-ui/GridList';
+const styles = {
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+};
+
 const App=()=>{
   return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
@@ -21,10 +28,10 @@ const App=()=>{
                         <TextField hintText={'Search Todo'}/>
                     </ToolbarGroup>
                 </Toolbar>
-              <GridList cols={2} style={{display:'flex',justifyContent:'space-around',flex:1,height:650}}>
-                  <GridTile  style={{width:300}}><TodoList/></GridTile>
-                  <GridTile><TodoList/></GridTile>
-              </GridList>
+              <div style={styles.root}>
+                  <SideBar/>
+                  <TodoList/>
+              </div>
           </div>
       </MuiThemeProvider>
   );
